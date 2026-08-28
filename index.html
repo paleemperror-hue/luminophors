@@ -372,6 +372,53 @@ td{font-weight:600}
 .f-msg.show{display:block}
 .f-msg.ok{background:#E8F6ED;color:var(--ok);border:1px solid #B7E2C6}
 .f-msg.no{background:#FDEBEB;color:var(--err);border:1px solid #F3C2C2}
+
+/* ===================== ОКНО «ЗАЯВКА ПРИНЯТА» ===================== */
+.modal[hidden]{display:none}
+.modal{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;
+}
+.modal-bg{position:absolute;inset:0;background:rgba(7,9,10,.62);backdrop-filter:blur(3px);animation:mFade .2s ease-out}
+.modal-card{
+  position:relative;width:100%;max-width:460px;background:#fff;
+  border-radius:18px;padding:36px 30px 28px;text-align:center;
+  box-shadow:0 24px 70px rgba(7,9,10,.4);
+  animation:mIn .26s cubic-bezier(.2,.9,.3,1.1);
+  max-height:calc(100vh - 40px);overflow-y:auto;
+}
+@keyframes mFade{from{opacity:0}to{opacity:1}}
+@keyframes mIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .modal-bg,.modal-card{animation:none}
+}
+.modal-x{
+  position:absolute;top:12px;right:12px;width:38px;height:38px;
+  display:grid;place-items:center;background:none;border:none;border-radius:9px;
+  cursor:pointer;color:var(--ink-3);
+}
+.modal-x:hover{background:var(--bg-alt);color:var(--ink)}
+.modal-x svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round}
+.modal-ico{
+  width:66px;height:66px;margin:0 auto 20px;border-radius:50%;
+  background:#E8F6ED;display:grid;place-items:center;
+  box-shadow:0 0 0 8px rgba(27,138,75,.09);
+}
+.modal-ico svg{width:32px;height:32px;stroke:var(--ok);fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.modal-card h3{font-size:24px;font-weight:800;margin:0 0 10px}
+.modal-card p{color:var(--ink-2);font-size:16px;margin:0 0 22px}
+.modal-meta{
+  text-align:left;background:var(--bg-alt);border-radius:12px;
+  padding:16px 18px;margin-bottom:22px;display:grid;gap:11px;
+}
+.modal-row{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--ink-2);line-height:1.45}
+.modal-row svg{flex:0 0 18px;width:18px;height:18px;stroke:var(--brand);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.modal-row a{font-weight:700;white-space:nowrap}
+body.modal-open{overflow:hidden}
+@media(max-width:479px){
+  .modal-card{padding:30px 20px 22px;border-radius:15px}
+  .modal-card h3{font-size:21px}
+  .modal-ico{width:58px;height:58px;margin-bottom:16px}
+}
 .btn[aria-busy="true"]{opacity:.65;pointer-events:none}
 
 .contacts{display:grid;gap:22px}
@@ -865,7 +912,6 @@ details .a p:last-child{margin-bottom:0}
     </div>
 
     <div class="form-box">
-      <div class="f-msg ok" id="msgOk" role="status" aria-live="polite"></div>
       <div class="f-msg no" id="msgNo" role="alert"></div>
 
       <form id="leadForm" novalidate>
@@ -891,13 +937,15 @@ details .a p:last-child{margin-bottom:0}
         <div class="f-row two">
           <div class="field" id="f-phone">
             <label for="phone">Телефон <span class="req">*</span></label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__">
-            <div class="err">Укажите телефон не менее 10 цифр</div>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel"
+                   maxlength="18" placeholder="+7 (999) 123-45-67">
+            <div class="err" id="err-phone">Введите номер полностью: +7 (999) 123-45-67</div>
           </div>
           <div class="field" id="f-email">
             <label for="email">E-mail <span class="req">*</span></label>
-            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="zakupki@company.ru">
-            <div class="err">Проверьте адрес электронной почты</div>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email"
+                   spellcheck="false" placeholder="example@example.ru">
+            <div class="err" id="err-email">Проверьте адрес: пример — example@example.ru</div>
           </div>
         </div>
 
@@ -1019,6 +1067,40 @@ details .a p:last-child{margin-bottom:0}
 <div class="mbar">
   <a class="btn btn-ghost" href="tel:+74999669706">Позвонить</a>
   <a class="btn btn-primary js-cta" href="#lead" data-topic="Заявка с мобильной панели">Оставить заявку</a>
+</div>
+
+<!-- ==================== ОКНО «ЗАЯВКА ПРИНЯТА» ==================== -->
+<div class="modal" id="okModal" hidden>
+  <div class="modal-bg" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="okTitle" aria-describedby="okText">
+    <button class="modal-x" type="button" data-close aria-label="Закрыть окно">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+    <div class="modal-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+
+    <h3 id="okTitle">Заявка принята</h3>
+    <p id="okText">
+      Спасибо! Мы получили вашу заявку. Менеджер свяжется с вами в ближайшее
+      рабочее время: уточнит объём и задачу, назовёт сроки и подготовит
+      коммерческое предложение.
+    </p>
+
+    <div class="modal-meta">
+      <div class="modal-row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span>Работаем Пн–Пт с 8:30 до 17:00</span>
+      </div>
+      <div class="modal-row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+        <span>Срочный вопрос — звоните: <a href="tel:+74999669706">+7 (499) 966-97-06</a></span>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-block" type="button" data-close id="okClose">Понятно</button>
+  </div>
 </div>
 
 <script type="application/ld+json">
@@ -1154,16 +1236,118 @@ details .a p:last-child{margin-bottom:0}
   /* ---------------------- Валидация формы ---------------------- */
   var form = document.getElementById('leadForm');
   var btn = document.getElementById('submitBtn');
-  var msgOk = document.getElementById('msgOk');
   var msgNo = document.getElementById('msgNo');
 
   function setBad(id, bad) {
     document.getElementById(id).classList.toggle('bad', bad);
   }
 
-  function digits(s) {
-    return (s.match(/\d/g) || []).length;
+  /* ============ МАСКА ТЕЛЕФОНА +7 (999) 123-45-67 ============
+     Работаем с «национальной» частью номера — 10 цифр после кода +7.
+     Код страны пользователь не редактирует: 7 и 8 в начале отбрасываются,
+     что бы он ни вставил из буфера. */
+
+  var phoneEl = form.phone;
+  var lastNat = '';
+
+  function natOf(raw) {
+    var d = String(raw).replace(/\D/g, '');
+    if (d.length && (d.charAt(0) === '7' || d.charAt(0) === '8')) d = d.slice(1);
+    return d.slice(0, 10);
   }
+
+  function phoneFormat(nat) {
+    if (!nat) return '';
+    var out = '+7 (' + nat.slice(0, 3);
+    if (nat.length >= 4) out += ') ' + nat.slice(3, 6);
+    if (nat.length >= 7) out += '-' + nat.slice(6, 8);
+    if (nat.length >= 9) out += '-' + nat.slice(8, 10);
+    return out;
+  }
+
+  /* Позиция каретки после n-й национальной цифры.
+     Индекс 1 в отформатированной строке — «7» из префикса, он не в счёт. */
+  function caretAfter(str, n) {
+    if (n <= 0) return Math.min(4, str.length);
+    var c = 0;
+    for (var i = 0; i < str.length; i++) {
+      var ch = str.charCodeAt(i);
+      if (ch >= 48 && ch <= 57 && i !== 1) {
+        c++;
+        if (c === n) return i + 1;
+      }
+    }
+    return str.length;
+  }
+
+  phoneEl.addEventListener('input', function (e) {
+    var old = phoneEl.value;
+    var caret = phoneEl.selectionStart === null ? old.length : phoneEl.selectionStart;
+
+    var digitsBefore = (old.slice(0, caret).match(/\d/g) || []).length;
+    var allDigits = old.replace(/\D/g, '');
+    var hasPrefix = allDigits.length > 0 && (allDigits.charAt(0) === '7' || allDigits.charAt(0) === '8');
+    var natBefore = hasPrefix ? Math.max(0, digitsBefore - 1) : digitsBefore;
+
+    var nat = natOf(old);
+    var deleting = e && e.inputType && e.inputType.indexOf('delete') === 0;
+
+    /* Backspace по разделителю: цифры не изменились — убираем цифру перед ним,
+       иначе каретка «залипала» бы на скобке или дефисе */
+    if (deleting && nat === lastNat && natBefore > 0) {
+      nat = nat.slice(0, natBefore - 1) + nat.slice(natBefore);
+      natBefore--;
+    }
+
+    lastNat = nat;
+    var formatted = phoneFormat(nat);
+    phoneEl.value = formatted;
+
+    var p = caretAfter(formatted, natBefore);
+    try { phoneEl.setSelectionRange(p, p); } catch (err) { /* поле вне фокуса */ }
+
+    setBad('f-phone', false);
+  });
+
+  /* Подсказываем формат сразу при фокусе и убираем «хвост», если ушли пустыми */
+  phoneEl.addEventListener('focus', function () {
+    if (!phoneEl.value) {
+      phoneEl.value = '+7 (';
+      lastNat = '';
+      try { phoneEl.setSelectionRange(4, 4); } catch (err) {}
+    }
+  });
+  phoneEl.addEventListener('blur', function () {
+    if (!natOf(phoneEl.value)) { phoneEl.value = ''; lastNat = ''; }
+  });
+
+  /* ============ РАЗБОР ОШИБОК ПОЧТЫ ============
+     Вместо общего «проверьте адрес» говорим, что именно не так. */
+
+  var EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+
+  function emailError(v) {
+    if (!v) return 'Укажите электронную почту';
+    if (/[А-Яа-яЁё]/.test(v)) return 'Адрес пишется латиницей: example@example.ru';
+    if (/\s/.test(v)) return 'В адресе не должно быть пробелов';
+    var at = v.split('@');
+    if (at.length < 2) return 'В адресе не хватает символа @';
+    if (at.length > 2) return 'В адресе больше одного символа @';
+    if (!at[0]) return 'Не хватает имени до символа @';
+    if (!at[1]) return 'Не хватает домена после символа @';
+    if (at[1].indexOf('.') === -1) return 'В домене не хватает точки: example@example.ru';
+    if (!EMAIL_RE.test(v)) return 'Проверьте адрес: пример — example@example.ru';
+    return '';
+  }
+
+  form.email.addEventListener('input', function () {
+    /* Пробелы при копировании из писем — частая беда, убираем молча */
+    var cleaned = form.email.value.replace(/\s+/g, '');
+    if (cleaned !== form.email.value) form.email.value = cleaned;
+  });
+  form.email.addEventListener('blur', function () {
+    form.email.value = form.email.value.trim().toLowerCase();
+  });
 
   function validate() {
     var bad = [];
@@ -1176,8 +1360,20 @@ details .a p:last-child{margin-bottom:0}
 
     if (form.name.value.trim().length < 2) bad.push('f-name');
     if (form.company.value.trim().length < 2) bad.push('f-company');
-    if (digits(form.phone.value) < 10) bad.push('f-phone');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.value.trim())) bad.push('f-email');
+
+    var nat = natOf(phoneEl.value);
+    if (nat.length !== 10) {
+      document.getElementById('err-phone').textContent = nat.length
+        ? 'Введите номер полностью: +7 (999) 123-45-67'
+        : 'Укажите контактный телефон';
+      bad.push('f-phone');
+    }
+
+    var eErr = emailError(form.email.value.trim());
+    if (eErr) {
+      document.getElementById('err-email').textContent = eErr;
+      bad.push('f-email');
+    }
 
     bad.forEach(function (id) { setBad(id, true); });
 
@@ -1187,6 +1383,42 @@ details .a p:last-child{margin-bottom:0}
     }
     return bad;
   }
+
+  /* ============ ОКНО «ЗАЯВКА ПРИНЯТА» ============ */
+
+  var modal = document.getElementById('okModal');
+  var lastFocused = null;
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    document.getElementById('okClose').focus();
+  }
+
+  function closeModal() {
+    if (modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  Array.prototype.forEach.call(modal.querySelectorAll('[data-close]'), function (el) {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { closeModal(); return; }
+    /* Не выпускаем фокус за пределы окна, пока оно открыто */
+    if (e.key === 'Tab') {
+      var f = modal.querySelectorAll('button, a[href]');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
 
   /* Ошибка поля снимается, как только его начали править */
   ['name', 'company', 'phone', 'email'].forEach(function (n) {
@@ -1202,7 +1434,6 @@ details .a p:last-child{margin-bottom:0}
     /* Honeypot: боты заполняют скрытое поле — тихо выходим */
     if (form.website.value) return;
 
-    msgOk.classList.remove('show');
     msgNo.classList.remove('show');
 
     var bad = validate();
@@ -1228,9 +1459,8 @@ details .a p:last-child{margin-bottom:0}
 
     submitLead(data).then(function () {
       form.reset();
-      msgOk.textContent = 'Спасибо! Заявка отправлена — свяжемся с вами в рабочее время.';
-      msgOk.classList.add('show');
-      msgOk.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      lastNat = '';
+      openModal();
 
       /* Событие для аналитики (Метрика / GA) */
       if (window.dataLayer) window.dataLayer.push({ event: 'lead_submit', topic: data.topic });
