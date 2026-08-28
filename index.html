@@ -1,14 +1,16 @@
 <!doctype html>
 <!--
   ============================================================================
-  Лендинг: неорганический люминофор «Орлюм 540-Н» — ООО Фирма «ОЛБО»
+  Лендинг: неорганический люминофор «Орлюм 530-Н» — ООО Фирма «ОЛБО»
   ============================================================================
 
   ЧЕК-ЛИСТ ПЕРЕД ПУБЛИКАЦИЕЙ (места в тексте помечены жёлтым, класс .ph):
 
-  [ ] 1. ДОМЕН. Прописать в <link rel="canonical">, og:url и og:image
-         абсолютный адрес сайта (сейчас закомментировано), а также
-         в текст согласия — consent.html, первый абзац.
+  [ ] 1. ДОМЕН. Из текста политики известно, что сайт живёт на
+         https://www.firma-olbo.ru — подставлен в privacy.html и consent.html.
+         Осталось раскомментировать <link rel="canonical">, og:url и og:image
+         ниже в <head> и подставить точный адрес страницы лендинга
+         (корень домена или подраздел — уточнить при переносе на хостинг).
   [ ] 2. ПРИЁМ ЗАЯВОК. Функция submitLead() внизу файла сейчас заглушка:
          ничего никуда не отправляет. Выбрать один из трёх готовых вариантов
          в комментарии и вставить свой ключ/адрес. БЕЗ ЭТОГО ЗАЯВКИ ТЕРЯЮТСЯ.
@@ -43,7 +45,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Орлюм 540-Н — неорганический люминофор длительного послесвечения | ООО Фирма «ОЛБО»</title>
+<title>Орлюм 530-Н — неорганический люминофор длительного послесвечения | ООО Фирма «ОЛБО»</title>
 
 <!-- ╔══════════════════════════════════════════════════════════════════╗
      ║  САЙТ ЗАКРЫТ ОТ ПОИСКОВИКОВ. УДАЛИТЬ СТРОКУ НИЖЕ ПЕРЕД ЗАПУСКОМ! ║
@@ -52,11 +54,11 @@
      ╚══════════════════════════════════════════════════════════════════╝ -->
 <meta name="robots" content="noindex, nofollow">
 
-<meta name="description" content="Люминофор Орлюм 540-Н: зелёное свечение до 10 часов, зарядка 15–30 минут, нетоксичен. Малотоннажные поставки под заказ, бесплатные образцы. Работаем с юридическими лицами и ИП.">
+<meta name="description" content="Люминофор Орлюм 530-Н: зелёное свечение до 10 часов, зарядка 15–30 минут, нетоксичен. Малотоннажные поставки под заказ, бесплатные образцы. Работаем с юридическими лицами и ИП.">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ООО Фирма «ОЛБО»">
-<meta property="og:title" content="Орлюм 540-Н — неорганический люминофор длительного послесвечения">
+<meta property="og:title" content="Орлюм 530-Н — неорганический люминофор длительного послесвечения">
 <meta property="og:description" content="Зелёное свечение до 10 часов после 15–30 минут зарядки. Малотоннажные поставки под заказ, бесплатные образцы.">
 <meta property="og:image" content="assets/img/powder-glow.jpg">
 <meta property="og:locale" content="ru_RU">
@@ -430,6 +432,34 @@ td{font-weight:600}
 .modal-row svg{flex:0 0 18px;width:18px;height:18px;stroke:var(--brand);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
 .modal-row a{font-weight:700;white-space:nowrap}
 body.modal-open{overflow:hidden}
+
+/* ===================== ПЛАШКА COOKIES =====================
+   Показывается один раз: выбор запоминается в localStorage.
+   На мобильных поднята над нижней панелью «Позвонить / Оставить заявку». */
+.cookie[hidden]{display:none}
+.cookie{
+  position:fixed;z-index:90;left:16px;right:16px;bottom:16px;
+  max-width:var(--maxw);margin:0 auto;
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 12px 40px rgba(7,9,10,.22);
+  padding:20px 22px;
+  display:grid;gap:16px;align-items:center;
+  animation:cookieUp .32s cubic-bezier(.2,.9,.3,1.05);
+}
+@keyframes cookieUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.cookie{animation:none}}
+.cookie-txt{min-width:0}
+.cookie-txt b{display:block;font-size:16px;font-weight:800;margin-bottom:5px}
+.cookie-txt p{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+.cookie .btn{white-space:nowrap}
+@media(min-width:760px){
+  .cookie{grid-template-columns:1fr auto;gap:24px;padding:20px 24px}
+  .cookie .btn{min-width:132px}
+}
+@media(max-width:979px){
+  /* над мобильной панелью действий */
+  .cookie{bottom:calc(76px + env(safe-area-inset-bottom));left:12px;right:12px;padding:18px}
+}
 @media(max-width:479px){
   .modal-card{padding:30px 20px 22px;border-radius:15px}
   .modal-card h3{font-size:21px}
@@ -572,7 +602,7 @@ details .a p:last-child{margin-bottom:0}
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">На рынке люминофоров с 1992 года</span>
-      <h1>Люминофор <span>Орлюм&nbsp;540-Н</span> — свечение в темноте до 10&nbsp;часов</h1>
+      <h1>Люминофор <span>Орлюм&nbsp;530-Н</span> — свечение в темноте до 10&nbsp;часов</h1>
       <p class="lead">
         Неорганический пигмент длительного послесвечения. Заряжается от любого света
         за 15–30 минут и всю ночь отдаёт ровное зелёное свечение — без батареек,
@@ -593,10 +623,10 @@ details .a p:last-child{margin-bottom:0}
     </div>
 
     <figure class="hero-media" style="margin:0">
-      <img src="assets/img/powder-glow.jpg" alt="Порошок люминофора Орлюм 540-Н светится зелёным в полной темноте"
+      <img src="assets/img/powder-glow.jpg" alt="Порошок люминофора Орлюм 530-Н светится зелёным в полной темноте"
            width="1400" height="933" fetchpriority="high" decoding="async">
       <figcaption class="hero-badge">
-        <b>Орлюм 540-Н</b>
+        <b>Орлюм 530-Н</b>
         Реальное свечение пигмента в темноте после зарядки
       </figcaption>
     </figure>
@@ -619,7 +649,7 @@ details .a p:last-child{margin-bottom:0}
 
     <div class="grid g2" style="margin-top:44px">
       <div class="cmp win">
-        <h3>Люминофор <span class="tag tag-y">Орлюм 540-Н</span></h3>
+        <h3>Люминофор <span class="tag tag-y">Орлюм 530-Н</span></h3>
         <ul>
           <li>Светится <strong>в полной темноте</strong>, без каких-либо источников света</li>
           <li>Заряжается от солнца, LED, лампы накаливания и УФ-лампы</li>
@@ -679,7 +709,7 @@ details .a p:last-child{margin-bottom:0}
       <span class="eyebrow">Что вы получаете</span>
       <h2>Сыпучий порошок, готовый к вводу в вашу рецептуру</h2>
       <p class="lead">
-        Орлюм 540-Н поставляется в виде сухого пигмента. Достаточно ввести
+        Орлюм 530-Н поставляется в виде сухого пигмента. Достаточно ввести
         3–5&nbsp;% от массы основы, перемешать до однородности — и материал начинает
         светиться. Никакого специального оборудования не требуется.
       </p>
@@ -693,7 +723,7 @@ details .a p:last-child{margin-bottom:0}
         <a class="btn btn-light js-cta" href="#lead" data-topic="Запрос образца из блока «Что вы получаете»">Запросить образец</a>
       </div>
     </div>
-    <img src="assets/img/pack-glow.jpg" alt="Люминофор Орлюм 540-Н в фасовочном пакете, зелёное свечение в темноте"
+    <img src="assets/img/pack-glow.jpg" alt="Люминофор Орлюм 530-Н в фасовочном пакете, зелёное свечение в темноте"
          width="1000" height="1127" loading="lazy" decoding="async">
   </div>
 </section>
@@ -703,7 +733,7 @@ details .a p:last-child{margin-bottom:0}
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Применение</span>
-      <h2>Где используют Орлюм 540-Н</h2>
+      <h2>Где используют Орлюм 530-Н</h2>
       <p class="lead">Пигмент вводится в прозрачные и полупрозрачные основы. Ниже — направления, в которых он работает чаще всего.</p>
     </div>
 
@@ -753,7 +783,7 @@ details .a p:last-child{margin-bottom:0}
 
     <div class="tbl-wrap" style="margin-top:40px">
       <table>
-        <caption>Люминофор неорганический Орлюм 540-Н</caption>
+        <caption>Люминофор неорганический Орлюм 530-Н</caption>
         <tbody>
           <tr><th scope="row">Тип пигмента</th><td>Неорганический пигмент длительного послесвечения (фосфоресцентный)</td></tr>
           <tr><th scope="row">Цвет свечения</th><td>Зелёный</td></tr>
@@ -1001,7 +1031,7 @@ details .a p:last-child{margin-bottom:0}
       </details>
       <details>
         <summary>Какие цвета свечения есть в наличии?</summary>
-        <div class="a"><p>Сейчас в ассортименте одна позиция — Орлюм 540-Н с зелёным свечением. Зелёный спектр воспринимается человеческим глазом как самый яркий, поэтому при равных условиях он даёт наиболее заметное свечение по сравнению с другими цветами.</p></div>
+        <div class="a"><p>Сейчас в ассортименте одна позиция — Орлюм 530-Н с зелёным свечением. Зелёный спектр воспринимается человеческим глазом как самый яркий, поэтому при равных условиях он даёт наиболее заметное свечение по сравнению с другими цветами.</p></div>
       </details>
       <details>
         <summary>Сколько пигмента нужно добавлять?</summary>
@@ -1017,7 +1047,7 @@ details .a p:last-child{margin-bottom:0}
       </details>
       <details>
         <summary>Пигмент безопасен? Есть документы?</summary>
-        <div class="a"><p>Орлюм 540-Н нетоксичен, не радиоактивен и безопасен при контакте с кожей. При поставке предоставляем паспорт качества и паспорт безопасности.</p></div>
+        <div class="a"><p>Орлюм 530-Н нетоксичен, не радиоактивен и безопасен при контакте с кожей. При поставке предоставляем паспорт качества и паспорт безопасности.</p></div>
       </details>
       <details>
         <summary>Какая минимальная партия и какие объёмы вы поставляете?</summary>
@@ -1089,6 +1119,20 @@ details .a p:last-child{margin-bottom:0}
   <a class="btn btn-primary js-cta" href="#lead" data-topic="Заявка с мобильной панели">Оставить заявку</a>
 </div>
 
+<!-- ==================== ПЛАШКА COOKIES ==================== -->
+<div class="cookie" id="cookieBar" role="region" aria-label="Уведомление об использовании cookies" hidden>
+  <div class="cookie-txt">
+    <b>Используем Cookies</b>
+    <p>
+      Нажмите «ОК», если вы соглашаетесь с условиями обработки cookies и ваших данных
+      о поведении на сайте, необходимых для аналитики. Запретить обработку cookies
+      вы можете через браузер. Подробнее — в
+      <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.
+    </p>
+  </div>
+  <button class="btn btn-primary" type="button" id="cookieOk">ОК</button>
+</div>
+
 <!-- ==================== ОКНО «ЗАЯВКА ПРИНЯТА» ==================== -->
 <div class="modal" id="okModal" hidden>
   <div class="modal-bg" data-close></div>
@@ -1151,7 +1195,7 @@ details .a p:last-child{margin-bottom:0}
     },
     {
       "@type": "Product",
-      "name": "Люминофор неорганический Орлюм 540-Н",
+      "name": "Люминофор неорганический Орлюм 530-Н",
       "category": "Пигмент длительного послесвечения",
       "description": "Неорганический фосфоресцентный пигмент с зелёным свечением. Послесвечение 8–10 часов, зарядка 15–30 минут, цвет порошка белый, фракция 10–70 мкм, фасовка от 1 кг. Нетоксичен и не радиоактивен. Совместим с УФ- и эпоксидной смолой, лаками, красками, силиконом и ПВА.",
       "image": "assets/img/powder-glow.jpg",
@@ -1491,6 +1535,30 @@ details .a p:last-child{margin-bottom:0}
       btn.removeAttribute('aria-busy');
       btn.textContent = 'Отправить заявку';
     });
+  });
+
+  /* ---------------------- Плашка cookies ----------------------
+     Согласие храним в localStorage. Доступ к нему может бросить
+     исключение (приватный режим, запрет данных сайта), поэтому
+     каждое обращение обёрнуто в try/catch: при отказе хранилища
+     плашка просто покажется снова. */
+
+  var COOKIE_KEY = 'olbo_cookies_ok';
+  var cookieBar = document.getElementById('cookieBar');
+
+  function cookieSeen() {
+    try { return localStorage.getItem(COOKIE_KEY) === '1'; }
+    catch (err) { return false; }
+  }
+
+  if (!cookieSeen()) {
+    /* Показываем не мгновенно, чтобы не перебивать первый экран */
+    setTimeout(function () { cookieBar.hidden = false; }, 900);
+  }
+
+  document.getElementById('cookieOk').addEventListener('click', function () {
+    cookieBar.hidden = true;
+    try { localStorage.setItem(COOKIE_KEY, '1'); } catch (err) { /* хранилище недоступно */ }
   });
 
   /* ---------------------- Год в подвале ---------------------- */
