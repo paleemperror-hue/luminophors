@@ -1,0 +1,1134 @@
+<!doctype html>
+<!--
+  ============================================================================
+  Лендинг: неорганический люминофор «Орлюм 540-Н» — ООО Фирма «ОЛБО»
+  ============================================================================
+
+  ЧЕК-ЛИСТ ПЕРЕД ПУБЛИКАЦИЕЙ (места в тексте помечены жёлтым, класс .ph):
+
+  [ ] 1. E-MAIL. Сейчас стоит info@firma-olbo.ru — адрес предположительный
+         (в исходных данных был указан домен firma-olbo.ru, а не почта).
+         Заменить во всех местах: поиск по «info@firma-olbo.ru».
+  [ ] 2. ДОМЕН. Прописать в <link rel="canonical">, og:url и og:image
+         абсолютный адрес сайта. Сейчас закомментировано.
+  [ ] 3. Цвет порошка при дневном свете.
+  [ ] 4. Размер частиц / фракция (мкм).
+  [ ] 5. Фасовка (варианты тары и вес).
+  [ ] 6. Документы: ТУ / ГОСТ, паспорт безопасности, сертификаты.
+  [ ] 7. Срок изготовления партии.
+  [ ] 8. Год начала работы компании (блок «Почему ОЛБО»).
+  [ ] 9. Политика обработки персональных данных — положить privacy.html
+         и проверить ссылку в форме и подвале.
+  [ ] 10. ПРИЁМ ЗАЯВОК. Функция submitLead() внизу файла сейчас заглушка:
+          ничего никуда не отправляет. Выбрать один из трёх готовых вариантов
+          в комментарии и вставить свой ключ/адрес. БЕЗ ЭТОГО ЗАЯВКИ ТЕРЯЮТСЯ.
+  [ ] 11. Счётчик Яндекс.Метрики — вставить в отмеченное место в <head>.
+
+  Когда все пункты закрыты — удалить правило «.ph { ... }» в CSS,
+  чтобы убрать жёлтую подсветку незаполненных мест.
+  ============================================================================
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Орлюм 540-Н — неорганический люминофор длительного послесвечения | ООО Фирма «ОЛБО»</title>
+<meta name="description" content="Люминофор Орлюм 540-Н: зелёное свечение до 10 часов, зарядка 15–30 минут, нетоксичен. Производство под заказ, любые объёмы, бесплатные образцы. Работаем с юридическими лицами и ИП.">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ООО Фирма «ОЛБО»">
+<meta property="og:title" content="Орлюм 540-Н — неорганический люминофор длительного послесвечения">
+<meta property="og:description" content="Зелёное свечение до 10 часов после 15–30 минут зарядки. Производство под заказ, бесплатные образцы.">
+<meta property="og:image" content="assets/img/powder-glow.jpg">
+<meta property="og:locale" content="ru_RU">
+<!-- ЗАМЕНИТЬ ПОСЛЕ ПОКУПКИ ДОМЕНА:
+<link rel="canonical" href="https://ВАШ-ДОМЕН/">
+<meta property="og:url" content="https://ВАШ-ДОМЕН/">
+<meta property="og:image" content="https://ВАШ-ДОМЕН/assets/img/powder-glow.jpg">
+-->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23EE7203'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%233DFF7A'/%3E%3C/svg%3E">
+
+<!-- СЮДА ВСТАВИТЬ СЧЁТЧИК ЯНДЕКС.МЕТРИКИ / GOOGLE ANALYTICS -->
+
+<style>
+/* ===================== ТОКЕНЫ ===================== */
+:root{
+  --brand:#EE7203;          /* оранжевый из логотипа */
+  --brand-dk:#C85C00;
+  --brand-lt:#FFF3E7;
+  --ink:#14181B;
+  --ink-2:#4E5A62;
+  --ink-3:#78868F;
+  --line:#E2E7EA;
+  --bg:#FFFFFF;
+  --bg-alt:#F5F7F8;
+  --dark:#07090A;
+  --glow:#3DFF7A;
+  --ok:#1B8A4B;
+  --err:#C62828;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(20,24,27,.05), 0 8px 24px rgba(20,24,27,.06);
+  --maxw:1180px;
+  --header-h:72px;
+}
+
+/* ===================== БАЗА ===================== */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:400 17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--brand-dk);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3{line-height:1.18;letter-spacing:-.015em;margin:0 0 .5em}
+h1{font-size:clamp(30px,5vw,50px);font-weight:800}
+h2{font-size:clamp(25px,3.6vw,37px);font-weight:800}
+h3{font-size:clamp(18px,2vw,21px);font-weight:700}
+p{margin:0 0 1em}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:4px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section{padding:72px 0;scroll-margin-top:calc(var(--header-h) + 8px)}
+.alt{background:var(--bg-alt)}
+.lead{font-size:clamp(17px,1.9vw,20px);color:var(--ink-2);max-width:62ch}
+.eyebrow{
+  display:inline-block;font-size:13px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--brand-dk);background:var(--brand-lt);
+  padding:6px 13px;border-radius:100px;margin-bottom:18px;
+}
+.center{text-align:center}
+.center .lead{margin-left:auto;margin-right:auto}
+
+/* Маркер незаполненных данных — см. чек-лист вверху файла */
+.ph{background:#FFF2C2;box-shadow:inset 0 -2px 0 #E0B93A;padding:0 3px;border-radius:3px}
+
+/* ===================== КНОПКИ ===================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font:inherit;font-weight:700;font-size:16px;line-height:1;
+  padding:16px 26px;border-radius:11px;border:2px solid transparent;
+  cursor:pointer;text-decoration:none;text-align:center;
+  transition:background .16s,border-color .16s,color .16s,transform .08s;
+}
+.btn:hover{text-decoration:none}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn-primary:hover{background:var(--brand-dk);border-color:var(--brand-dk);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink-3);color:var(--ink)}
+.btn-light{background:#fff;color:var(--ink);border-color:#fff}
+.btn-light:hover{background:#f0f0f0;border-color:#f0f0f0;color:var(--ink)}
+.btn-sm{padding:11px 18px;font-size:15px;border-radius:9px}
+.btn-block{width:100%}
+
+/* ===================== ШАПКА ===================== */
+.hdr{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);
+}
+.hdr-in{display:flex;align-items:center;gap:20px;height:var(--header-h)}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.logo img{height:34px;width:auto}
+.logo b{font-size:15px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+.nav{display:none;gap:26px;margin-left:auto}
+.nav a{color:var(--ink-2);font-size:15px;font-weight:600}
+.nav a:hover{color:var(--brand-dk);text-decoration:none}
+.hdr-cta{display:none;align-items:center;gap:14px;margin-left:22px}
+.hdr-tel{font-weight:800;font-size:16px;color:var(--ink);white-space:nowrap}
+.hdr-tel:hover{color:var(--brand-dk);text-decoration:none}
+.burger{
+  margin-left:auto;width:44px;height:44px;display:grid;place-items:center;
+  background:none;border:1px solid var(--line);border-radius:10px;cursor:pointer;
+}
+.burger span{display:block;width:20px;height:2px;background:var(--ink);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--ink)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.mnav{display:none;border-top:1px solid var(--line);background:#fff;padding:14px 0 20px}
+.mnav.open{display:block}
+.mnav a{display:block;padding:12px 0;color:var(--ink);font-weight:600;border-bottom:1px solid var(--line)}
+.mnav .btn{margin-top:16px}
+
+@media(min-width:980px){
+  .nav{display:flex}
+  .hdr-cta{display:flex}
+  .burger{display:none}
+  .mnav{display:none !important}
+}
+
+/* ===================== ГЕРОЙ ===================== */
+.hero{padding:56px 0 72px;position:relative;overflow:hidden}
+.hero-grid{display:grid;gap:40px;align-items:center}
+.hero h1 span{color:var(--brand)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 22px}
+.hero-note{font-size:15px;color:var(--ink-3);margin:0}
+.facts{
+  list-style:none;padding:0;margin:34px 0 0;display:grid;gap:14px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.facts li{display:flex;flex-direction:column;gap:2px;padding-left:15px;border-left:3px solid var(--brand)}
+.facts b{font-size:21px;font-weight:800;line-height:1.15}
+.facts small{font-size:14px;color:var(--ink-2);line-height:1.35}
+
+.hero-media{position:relative}
+.hero-media img{border-radius:var(--radius);box-shadow:0 20px 50px rgba(7,9,10,.28)}
+.hero-badge{
+  position:absolute;left:16px;bottom:16px;background:rgba(7,9,10,.82);
+  color:#fff;border-radius:10px;padding:11px 15px;font-size:14px;line-height:1.35;
+  backdrop-filter:blur(6px);max-width:78%;
+}
+.hero-badge b{color:var(--glow);display:block;font-size:15px}
+
+@media(min-width:900px){
+  .hero{padding:76px 0 96px}
+  .hero-grid{grid-template-columns:1.05fr .95fr;gap:56px}
+  .facts{gap:20px}
+}
+
+/* ===================== СЕТКИ / КАРТОЧКИ ===================== */
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:1fr}
+.g3{grid-template-columns:1fr}
+@media(min-width:700px){.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.g3{grid-template-columns:repeat(3,1fr)}}
+
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow);
+}
+.card h3{margin-bottom:.4em}
+.card p{margin:0;color:var(--ink-2);font-size:16px}
+.card .ico{
+  width:46px;height:46px;border-radius:11px;background:var(--brand-lt);
+  display:grid;place-items:center;margin-bottom:16px;color:var(--brand-dk);
+}
+.card .ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* Сравнение люминофор / флуоресцент */
+.cmp{border-radius:var(--radius);padding:26px;border:1px solid var(--line);background:#fff}
+.cmp.win{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-lt)}
+.cmp h3{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.tag-y{background:var(--brand);color:#fff}
+.tag-n{background:#EDF1F3;color:var(--ink-3)}
+.cmp ul{margin:14px 0 0;padding-left:20px;color:var(--ink-2);font-size:16px}
+.cmp li{margin-bottom:8px}
+
+/* График затухания */
+.decay{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin:26px 0 0}
+.decay svg{width:100%;height:auto;display:block}
+.decay figcaption{margin-top:14px;font-size:14px;color:var(--ink-3);text-align:center}
+
+/* ===================== ТЁМНАЯ СЕКЦИЯ ===================== */
+.dark{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+.dark::after{
+  content:"";position:absolute;width:620px;height:620px;border-radius:50%;
+  background:radial-gradient(circle,rgba(61,255,122,.16) 0%,rgba(61,255,122,0) 68%);
+  top:50%;left:72%;transform:translate(-50%,-50%);pointer-events:none;
+  animation:pulse 5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.dark::after{animation:none}}
+.dark .wrap{position:relative;z-index:1}
+.dark h2{color:#fff}
+.dark .lead{color:#B9C4C9}
+.dark .eyebrow{background:rgba(61,255,122,.13);color:var(--glow)}
+.dark-grid{display:grid;gap:38px;align-items:center}
+@media(min-width:900px){.dark-grid{grid-template-columns:1fr 1fr;gap:56px}}
+.dark-grid img{border-radius:var(--radius)}
+.glow-list{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:15px}
+.glow-list li{display:flex;gap:13px;align-items:flex-start;color:#D6DEE2;font-size:16px}
+.glow-list svg{flex:0 0 21px;width:21px;height:21px;stroke:var(--glow);fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+
+/* ===================== ТАБЛИЦА ===================== */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:16px}
+caption{text-align:left;padding:18px 22px 0;font-weight:700;font-size:17px}
+th,td{padding:15px 22px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{width:42%;font-weight:600;color:var(--ink-2);background:#FAFBFC}
+tr:last-child th,tr:last-child td{border-bottom:none}
+td{font-weight:600}
+
+/* ===================== ШАГИ ===================== */
+.steps{counter-reset:s;display:grid;gap:22px}
+@media(min-width:700px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{counter-increment:s;position:relative;padding-top:52px}
+.step::before{
+  content:counter(s);position:absolute;top:0;left:0;
+  width:40px;height:40px;border-radius:50%;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-weight:800;font-size:18px;
+}
+.step h3{font-size:18px;margin-bottom:.35em}
+.step p{margin:0;color:var(--ink-2);font-size:16px}
+
+/* ===================== ФОРМАТЫ ПОСТАВКИ ===================== */
+.plan{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+.plan.feat{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-lt),var(--shadow)}
+.plan h3{margin-bottom:.3em}
+.plan .sub{color:var(--ink-3);font-size:15px;margin:0 0 18px}
+.plan ul{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:11px}
+.plan li{display:flex;gap:10px;font-size:16px;color:var(--ink-2)}
+.plan li svg{flex:0 0 19px;width:19px;height:19px;stroke:var(--brand);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+.plan .btn{margin-top:auto}
+
+/* ===================== ФОРМА ===================== */
+.form-sec{background:var(--bg-alt)}
+.form-grid{display:grid;gap:36px}
+@media(min-width:940px){.form-grid{grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}}
+.form-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+@media(min-width:600px){.form-box{padding:34px}}
+.f-row{display:grid;gap:0}
+@media(min-width:560px){.f-row.two{grid-template-columns:1fr 1fr;gap:0 18px}}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
+.field .req{color:var(--brand)}
+.field input,.field textarea{
+  width:100%;font:inherit;font-size:16px;padding:13px 15px;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:10px;
+  transition:border-color .15s,box-shadow .15s;
+}
+.field textarea{min-height:112px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-lt)}
+.field.bad input,.field.bad textarea{border-color:var(--err)}
+.err{display:none;color:var(--err);font-size:13.5px;margin-top:6px;font-weight:600}
+.field.bad .err{display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.consent{display:flex;gap:11px;align-items:flex-start;margin:6px 0 20px}
+.consent input{flex:0 0 19px;width:19px;height:19px;margin-top:2px;accent-color:var(--brand)}
+.consent label{font-size:14px;color:var(--ink-2);line-height:1.5}
+.consent.bad label{color:var(--err)}
+
+.f-note{font-size:13.5px;color:var(--ink-3);margin:14px 0 0;text-align:center}
+.f-msg{display:none;border-radius:11px;padding:16px 18px;margin-bottom:20px;font-size:15.5px;font-weight:600}
+.f-msg.show{display:block}
+.f-msg.ok{background:#E8F6ED;color:var(--ok);border:1px solid #B7E2C6}
+.f-msg.no{background:#FDEBEB;color:var(--err);border:1px solid #F3C2C2}
+.btn[aria-busy="true"]{opacity:.65;pointer-events:none}
+
+.contacts{display:grid;gap:22px}
+.contact-item{display:flex;gap:14px;align-items:flex-start}
+.contact-item svg{flex:0 0 22px;width:22px;height:22px;stroke:var(--brand);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+.contact-item .k{font-size:13px;color:var(--ink-3);font-weight:600;margin-bottom:2px}
+.contact-item .v{font-size:17px;font-weight:700;color:var(--ink)}
+.contact-item .v a{color:var(--ink)}
+.contact-item .v a:hover{color:var(--brand-dk)}
+.contact-item .v.sm{font-size:16px;font-weight:600;line-height:1.45}
+
+/* ===================== FAQ ===================== */
+.faq{max-width:840px;margin:0 auto}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+details[open]{border-color:var(--brand)}
+summary{
+  cursor:pointer;list-style:none;padding:19px 54px 19px 22px;position:relative;
+  font-weight:700;font-size:17px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:"";position:absolute;right:22px;top:50%;width:11px;height:11px;
+  border-right:2.4px solid var(--brand);border-bottom:2.4px solid var(--brand);
+  transform:translateY(-70%) rotate(45deg);transition:transform .18s;
+}
+details[open] summary::after{transform:translateY(-25%) rotate(225deg)}
+details .a{padding:0 22px 20px;color:var(--ink-2);font-size:16px}
+details .a p:last-child{margin-bottom:0}
+
+/* ===================== ПОДВАЛ ===================== */
+.ftr{background:var(--dark);color:#9EAAB1;padding:56px 0 28px;font-size:15px}
+.ftr a{color:#D6DEE2}
+.ftr a:hover{color:#fff}
+.ftr-grid{display:grid;gap:34px;margin-bottom:36px}
+@media(min-width:820px){.ftr-grid{grid-template-columns:1.3fr 1fr 1.2fr}}
+.ftr h4{color:#fff;font-size:15px;font-weight:700;margin:0 0 14px;letter-spacing:.02em}
+.ftr p{margin:0 0 9px;line-height:1.55}
+.ftr-logo{background:#fff;border-radius:10px;padding:10px 14px;display:inline-block;margin-bottom:16px}
+.ftr-logo img{height:32px;width:auto}
+.req-list{font-size:14px;line-height:1.7;color:#8B979E}
+.ftr-btm{border-top:1px solid rgba(255,255,255,.11);padding-top:22px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13.5px;color:#78868F}
+
+/* ===================== МОБИЛЬНАЯ ПАНЕЛЬ ===================== */
+.mbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);
+}
+.mbar .btn{flex:1;padding:14px 10px;font-size:15px}
+@media(min-width:980px){.mbar{display:none}}
+@media(max-width:979px){body{padding-bottom:76px}}
+</style>
+</head>
+<body>
+
+<!-- ==================== ШАПКА ==================== -->
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#top" aria-label="ООО Фирма ОЛБО — на главную">
+      <img src="assets/img/olbo-logo.png" alt="Логотип ООО Фирма «ОЛБО»" width="600" height="318">
+      <b>Фирма «ОЛБО»</b>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#product">Продукт</a>
+      <a href="#applications">Применение</a>
+      <a href="#specs">Характеристики</a>
+      <a href="#supply">Поставка</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="hdr-tel" href="tel:+74999669706">+7 (499) 966-97-06</a>
+      <a class="btn btn-primary btn-sm js-cta" href="#lead" data-topic="Заявка из шапки сайта">Оставить заявку</a>
+    </div>
+    <button class="burger" type="button" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mnav"><span></span></button>
+  </div>
+  <div class="mnav" id="mnav">
+    <div class="wrap">
+      <a href="#product">Продукт</a>
+      <a href="#applications">Применение</a>
+      <a href="#specs">Характеристики</a>
+      <a href="#supply">Поставка</a>
+      <a href="#faq">Вопросы</a>
+      <a class="btn btn-primary btn-block js-cta" href="#lead" data-topic="Заявка из мобильного меню">Оставить заявку</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ==================== ГЕРОЙ ==================== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Собственное производство под заказ</span>
+      <h1>Люминофор <span>Орлюм&nbsp;540-Н</span> — свечение в темноте до 10&nbsp;часов</h1>
+      <p class="lead">
+        Неорганический пигмент длительного послесвечения. Заряжается от любого света
+        за 15–30 минут и всю ночь отдаёт ровное зелёное свечение — без батареек,
+        проводов и внешнего источника питания.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary js-cta" href="#lead" data-topic="Запрос бесплатного образца">Получить бесплатный образец</a>
+        <a class="btn btn-ghost" href="#specs">Технические характеристики</a>
+      </div>
+      <p class="hero-note">Работаем с юридическими лицами и ИП. Отгружаем партии любого объёма.</p>
+
+      <ul class="facts">
+        <li><b>8–10 часов</b><small>послесвечения после полной зарядки</small></li>
+        <li><b>15–30 минут</b><small>до полного заряда от солнца или лампы</small></li>
+        <li><b>Нетоксичен</b><small>не радиоактивен, безопасен для кожи</small></li>
+        <li><b>Любой объём</b><small>от пробной партии до тонн</small></li>
+      </ul>
+    </div>
+
+    <figure class="hero-media" style="margin:0">
+      <img src="assets/img/powder-glow.jpg" alt="Порошок люминофора Орлюм 540-Н светится зелёным в полной темноте"
+           width="1400" height="933" fetchpriority="high" decoding="async">
+      <figcaption class="hero-badge">
+        <b>Орлюм 540-Н</b>
+        Реальное свечение пигмента в темноте после зарядки
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ==================== КАК РАБОТАЕТ ==================== -->
+<section id="product" class="alt">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Как это работает</span>
+      <h2>Накапливает свет днём — отдаёт его ночью</h2>
+      <p class="lead">
+        Кристаллы люминофора поглощают энергию света и удерживают её. В темноте
+        энергия высвобождается в виде видимого свечения — этот эффект называется
+        фосфоресценцией. Процесс полностью обратимый и повторяется неограниченное
+        число циклов: пигмент не выгорает и не теряет яркость со временем.
+      </p>
+    </div>
+
+    <div class="grid g2" style="margin-top:44px">
+      <div class="cmp win">
+        <h3>Люминофор <span class="tag tag-y">Орлюм 540-Н</span></h3>
+        <ul>
+          <li>Светится <strong>в полной темноте</strong>, без каких-либо источников света</li>
+          <li>Заряжается от солнца, LED, лампы накаливания и УФ-лампы</li>
+          <li>После зарядки светится 8–10 часов с плавным затуханием</li>
+          <li>Автономен: не нужны питание, провода и электроника</li>
+        </ul>
+      </div>
+      <div class="cmp">
+        <h3>Флуоресцентный пигмент <span class="tag tag-n">для сравнения</span></h3>
+        <ul>
+          <li>Светится <strong>только под УФ-лампой</strong></li>
+          <li>Гаснет мгновенно, как только лампу выключили</li>
+          <li>Не накапливает энергию — послесвечения нет</li>
+          <li>Нужен постоянно работающий источник УФ-излучения</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="decay">
+      <svg viewBox="0 0 800 260" role="img" aria-label="График: яркость свечения плавно снижается в течение 10 часов после зарядки">
+        <defs>
+          <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3DFF7A" stop-opacity=".38"/>
+            <stop offset="100%" stop-color="#3DFF7A" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="60" y1="30" x2="60" y2="210" stroke="#D8DEE2" stroke-width="1.5"/>
+        <line x1="60" y1="210" x2="760" y2="210" stroke="#D8DEE2" stroke-width="1.5"/>
+        <g stroke="#EDF1F3" stroke-width="1">
+          <line x1="60" y1="165" x2="760" y2="165"/>
+          <line x1="60" y1="120" x2="760" y2="120"/>
+          <line x1="60" y1="75"  x2="760" y2="75"/>
+        </g>
+        <path d="M60 42 C 180 44, 250 108, 340 140 S 540 190, 760 203 L 760 210 L 60 210 Z" fill="url(#fade)"/>
+        <path d="M60 42 C 180 44, 250 108, 340 140 S 540 190, 760 203" fill="none" stroke="#1F8F45" stroke-width="3.2" stroke-linecap="round"/>
+        <circle cx="60" cy="42" r="6" fill="#1F8F45"/>
+        <g font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="14" fill="#78868F">
+          <text x="60"  y="234" text-anchor="middle">0 ч</text>
+          <text x="235" y="234" text-anchor="middle">2 ч</text>
+          <text x="410" y="234" text-anchor="middle">5 ч</text>
+          <text x="585" y="234" text-anchor="middle">8 ч</text>
+          <text x="755" y="234" text-anchor="end">10 ч</text>
+          <text x="48"  y="47"  text-anchor="end">макс.</text>
+          <text x="48"  y="214" text-anchor="end">0</text>
+        </g>
+        <text x="98" y="36" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="14" font-weight="700" fill="#14181B">Яркость свечения</text>
+      </svg>
+      <figcaption>Кривая затухания: первые часы — самое яркое свечение, далее плавный спад до 10 часов</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ==================== ТЁМНАЯ ДЕМО-СЕКЦИЯ ==================== -->
+<section class="dark">
+  <div class="wrap dark-grid">
+    <div>
+      <span class="eyebrow">Что вы получаете</span>
+      <h2>Сыпучий порошок, готовый к вводу в вашу рецептуру</h2>
+      <p class="lead">
+        Орлюм 540-Н поставляется в виде сухого пигмента. Достаточно ввести
+        3–5&nbsp;% от массы основы, перемешать до однородности — и материал начинает
+        светиться. Никакого специального оборудования не требуется.
+      </p>
+      <ul class="glow-list">
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Совместим с УФ- и эпоксидной смолой, лаками, красками, силиконом и ПВА</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Не выгорает и не теряет яркость от количества циклов зарядки</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Срок хранения 24 месяца в закрытой таре без доступа влаги</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Бесплатный образец для проверки в вашей рецептуре до закупки</li>
+      </ul>
+      <div class="hero-actions" style="margin-bottom:0">
+        <a class="btn btn-light js-cta" href="#lead" data-topic="Запрос образца из блока «Что вы получаете»">Запросить образец</a>
+      </div>
+    </div>
+    <img src="assets/img/pack-glow.jpg" alt="Люминофор Орлюм 540-Н в фасовочном пакете, зелёное свечение в темноте"
+         width="1000" height="1127" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<!-- ==================== ПРИМЕНЕНИЕ ==================== -->
+<section id="applications">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Применение</span>
+      <h2>Где используют Орлюм 540-Н</h2>
+      <p class="lead">Пигмент вводится в прозрачные и полупрозрачные основы. Ниже — направления, в которых он работает чаще всего.</p>
+    </div>
+
+    <div class="grid g3" style="margin-top:44px">
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M19 11l-7 8-7-8a7 7 0 1114 0z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+        <h3>Лакокрасочные материалы</h3>
+        <p>Светящиеся краски, лаки, эмали и покрытия. Пигмент вводится на стадии смешивания без изменения технологии производства.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></div>
+        <h3>Пластики и полимеры</h3>
+        <p>Мастербатчи, литьё, ПВХ, силикон, полиуретан. Подходит для серийного производства изделий со светящимися элементами.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg></div>
+        <h3>Смолы, декор, hand-made</h3>
+        <p>УФ- и эпоксидная смола, заливка молдов, роспись, сувенирная продукция, интерьерные панно с эффектом звёздного неба.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+        <h3>Рыболовные приманки</h3>
+        <p>Тонировка воблеров, силиконовых приманок, мормышек и блёсен. Приманка остаётся заметной ночью и на глубине.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v5M12 16.2v.1"/></svg></div>
+        <h3>Сигнальная разметка и охрана труда</h3>
+        <p>Фотолюминесцентные знаки, разметка эвакуационных путей, кромки ступеней, метки на выключателях и ручках дверей.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9.5 3L7 9l5 12M14.5 3L17 9l-5 12"/></svg></div>
+        <h3>Бижутерия и УФ-эмаль</h3>
+        <p>Колеровка ювелирной эмали, серьги, кулоны и кольца со свечением. Работает как выразительный акцент в авторских изделиях.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ХАРАКТЕРИСТИКИ ==================== -->
+<section id="specs" class="alt">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Спецификация</span>
+      <h2>Технические характеристики</h2>
+      <p class="lead">Полный паспорт с методиками измерений отправляем вместе с образцом по запросу.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:40px">
+      <table>
+        <caption>Люминофор неорганический Орлюм 540-Н</caption>
+        <tbody>
+          <tr><th scope="row">Тип пигмента</th><td>Неорганический пигмент длительного послесвечения (фосфоресцентный)</td></tr>
+          <tr><th scope="row">Цвет свечения</th><td>Зелёный</td></tr>
+          <tr><th scope="row">Цвет порошка при дневном свете</th><td><span class="ph">указать: светло-жёлтый / бледно-зелёный</span></td></tr>
+          <tr><th scope="row">Время послесвечения</th><td>8–10 часов после полной зарядки</td></tr>
+          <tr><th scope="row">Время зарядки</th><td>15–30 минут</td></tr>
+          <tr><th scope="row">Источники зарядки</th><td>Солнечный свет, лампа накаливания, LED, УФ-лампа</td></tr>
+          <tr><th scope="row">Размер частиц (фракция)</th><td><span class="ph">указать диапазон, мкм</span></td></tr>
+          <tr><th scope="row">Рекомендуемая дозировка</th><td>3–5 % от массы основы, в зависимости от требуемой яркости</td></tr>
+          <tr><th scope="row">Совместимость с основами</th><td>УФ-смола, эпоксидная смола, лаки, краски, силикон, ПВА</td></tr>
+          <tr><th scope="row">Безопасность</th><td>Нетоксичен, не радиоактивен, безопасен при контакте с кожей</td></tr>
+          <tr><th scope="row">Срок хранения</th><td>24 месяца в закрытой таре, защищённой от влаги</td></tr>
+          <tr><th scope="row">Фасовка</th><td><span class="ph">указать варианты тары и вес</span></td></tr>
+          <tr><th scope="row">Документы</th><td><span class="ph">указать: ТУ / ГОСТ, паспорт безопасности, сертификаты</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ПОЧЕМУ ОЛБО ==================== -->
+<section>
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Почему ОЛБО</span>
+      <h2>Условия работы</h2>
+    </div>
+    <div class="grid g3" style="margin-top:44px">
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M20.5 7.3L12 2 3.5 7.3v9.4L12 22l8.5-5.3z"/><path d="M12 22V12M3.5 7.3L12 12l8.5-4.7"/></svg></div>
+        <h3>Производство под заказ</h3>
+        <p>Не торгуем чужим товаром со склада — изготавливаем партию под вашу задачу и требуемый объём.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7"/><path d="M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></div>
+        <h3>Бесплатные образцы</h3>
+        <p>Отправляем образец, чтобы вы проверили пигмент в своей рецептуре до того, как размещать заказ.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Партии любого объёма</h3>
+        <p>От пробной фасовки для запуска нового изделия до регулярных отгрузок под серийное производство.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+        <h3>Работа по договору</h3>
+        <p>Только с юридическими лицами и ИП. Полный пакет отгрузочных документов, безналичный расчёт.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg></div>
+        <h3>Техническая поддержка</h3>
+        <p>Подскажем дозировку под вашу основу, поможем подобрать способ ввода и оценить итоговую яркость.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Опыт работы с <span class="ph">указать год</span></h3>
+        <p>ООО Фирма «ОЛБО», ОГРН 1027700363888. Действующее производственное предприятие в Москве.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ФОРМАТЫ ПОСТАВКИ ==================== -->
+<section id="supply" class="alt">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Поставка</span>
+      <h2>С чего начать сотрудничество</h2>
+      <p class="lead">Выберите подходящий формат — дальше всё обсудим по телефону или в переписке.</p>
+    </div>
+
+    <div class="grid g3" style="margin-top:44px">
+      <div class="plan">
+        <h3>Бесплатный образец</h3>
+        <p class="sub">Для проверки в вашей рецептуре</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Образец пигмента бесплатно</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Технические характеристики</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Рекомендации по дозировке</li>
+        </ul>
+        <a class="btn btn-ghost btn-block js-cta" href="#lead" data-topic="Бесплатный образец">Запросить образец</a>
+      </div>
+
+      <div class="plan feat">
+        <h3>Пробная партия</h3>
+        <p class="sub">Для запуска нового изделия</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Небольшой объём под тестовый выпуск</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Договор и отгрузочные документы</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Сопровождение технолога</li>
+        </ul>
+        <a class="btn btn-primary btn-block js-cta" href="#lead" data-topic="Пробная партия">Рассчитать пробную партию</a>
+      </div>
+
+      <div class="plan">
+        <h3>Крупная партия</h3>
+        <p class="sub">Для серийного производства</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Объёмы под серийный выпуск</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>График регулярных отгрузок</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Индивидуальные условия по договору</li>
+        </ul>
+        <a class="btn btn-ghost btn-block js-cta" href="#lead" data-topic="Крупная партия">Обсудить поставки</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== КАК ЗАКАЗАТЬ ==================== -->
+<section>
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Порядок работы</span>
+      <h2>Четыре шага до первой отгрузки</h2>
+    </div>
+    <div class="steps" style="margin-top:48px">
+      <div class="step">
+        <h3>Заявка</h3>
+        <p>Оставляете контакты и коротко описываете задачу: в какую основу вводите пигмент и какой нужен объём.</p>
+      </div>
+      <div class="step">
+        <h3>Образец</h3>
+        <p>Отправляем бесплатный образец и характеристики. Вы проверяете пигмент в своей рецептуре.</p>
+      </div>
+      <div class="step">
+        <h3>Согласование</h3>
+        <p>Готовим коммерческое предложение, согласуем спецификацию, объём и сроки. Заключаем договор.</p>
+      </div>
+      <div class="step">
+        <h3>Отгрузка</h3>
+        <p>Изготавливаем партию под заказ<span class="ph"> — срок указать</span> и отгружаем с полным пакетом документов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ФОРМА ЗАЯВКИ ==================== -->
+<section id="lead" class="form-sec">
+  <div class="wrap form-grid">
+    <div>
+      <span class="eyebrow">Заявка</span>
+      <h2>Оставьте заявку — ответим в рабочее время</h2>
+      <p class="lead" style="margin-bottom:32px">
+        Расскажите о задаче, и мы подберём условия под ваш объём. Бесплатный образец
+        отправляем по запросу вместе с техническими характеристиками.
+      </p>
+
+      <div class="contacts">
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+          <div><div class="k">Телефон</div><div class="v"><a href="tel:+74999669706">+7 (499) 966-97-06</a></div></div>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          <div><div class="k">Электронная почта</div><div class="v"><a href="mailto:info@firma-olbo.ru" class="ph">info@firma-olbo.ru</a></div></div>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div><div class="k">График работы</div><div class="v">Пн–Пт, 8:30–17:00</div></div>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="k">Адрес</div><div class="v sm">107143, г. Москва,<br>1-й Иртышский проезд, д. 10А, стр. 1</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <div class="f-msg ok" id="msgOk" role="status" aria-live="polite"></div>
+      <div class="f-msg no" id="msgNo" role="alert"></div>
+
+      <form id="leadForm" novalidate>
+        <input type="hidden" name="topic" id="topic" value="Заявка с сайта">
+        <div class="hp" aria-hidden="true">
+          <label for="website">Не заполняйте это поле</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="f-row two">
+          <div class="field" id="f-name">
+            <label for="name">Ваше имя <span class="req">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Иван Петров">
+            <div class="err">Укажите, как к вам обращаться</div>
+          </div>
+          <div class="field" id="f-company">
+            <label for="company">Компания или ИП <span class="req">*</span></label>
+            <input type="text" id="company" name="company" autocomplete="organization" placeholder="ООО «Пример»">
+            <div class="err">Работаем только с юрлицами и ИП — укажите организацию</div>
+          </div>
+        </div>
+
+        <div class="f-row two">
+          <div class="field" id="f-phone">
+            <label for="phone">Телефон <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__">
+            <div class="err">Укажите телефон не менее 10 цифр</div>
+          </div>
+          <div class="field" id="f-email">
+            <label for="email">E-mail <span class="req">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="zakupki@company.ru">
+            <div class="err">Проверьте адрес электронной почты</div>
+          </div>
+        </div>
+
+        <div class="field" id="f-task">
+          <label for="task">Задача и предполагаемый объём</label>
+          <textarea id="task" name="task" placeholder="Например: вводим пигмент в эпоксидную смолу для литья сувениров, интересует небольшой объём для теста и далее регулярные поставки"></textarea>
+        </div>
+
+        <div class="consent" id="f-consent">
+          <input type="checkbox" id="consent" name="consent">
+          <label for="consent">
+            Согласен на обработку персональных данных в соответствии с
+            <a href="privacy.html" class="ph">политикой конфиденциальности</a> <span class="req">*</span>
+          </label>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit" id="submitBtn">Отправить заявку</button>
+        <p class="f-note">Отвечаем в рабочее время: Пн–Пт с 8:30 до 17:00</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Вопросы и ответы</span>
+      <h2>О чём чаще всего спрашивают</h2>
+    </div>
+
+    <div class="faq" style="margin-top:44px">
+      <details>
+        <summary>Чем люминофор отличается от флуоресцентного пигмента?</summary>
+        <div class="a"><p>Флуоресцентный пигмент светится только пока на него направлена УФ-лампа, и гаснет сразу после её выключения. Люминофор накапливает энергию света и отдаёт её в полной темноте без всякого источника — свечение продолжается 8–10 часов после зарядки.</p></div>
+      </details>
+      <details>
+        <summary>Какие цвета свечения есть в наличии?</summary>
+        <div class="a"><p>Сейчас мы производим одну позицию — Орлюм 540-Н с зелёным свечением. Зелёный спектр воспринимается человеческим глазом как самый яркий, поэтому при равных условиях он даёт наиболее заметное свечение по сравнению с другими цветами.</p></div>
+      </details>
+      <details>
+        <summary>Сколько пигмента нужно добавлять?</summary>
+        <div class="a"><p>Рекомендуемая дозировка — 3–5 % от массы основы. Точное количество зависит от прозрачности основы и нужной яркости: чем прозрачнее материал, тем меньше пигмента требуется. По конкретной рецептуре подскажем при обращении.</p></div>
+      </details>
+      <details>
+        <summary>С какими материалами он совместим?</summary>
+        <div class="a"><p>УФ-смола, эпоксидная смола, лаки, краски, силикон, ПВА. Основа должна быть прозрачной или полупрозрачной — в непрозрачных материалах свет от кристаллов не выйдет наружу. Перед серийным запуском рекомендуем проверить пигмент на бесплатном образце.</p></div>
+      </details>
+      <details>
+        <summary>Правда ли свечение длится 10 часов?</summary>
+        <div class="a"><p>Да, но яркость убывает неравномерно. Самое интенсивное свечение — в первые часы после зарядки, дальше идёт плавное затухание. Через 8–10 часов свечение ещё различимо глазом в полной темноте. На результат влияют дозировка, прозрачность основы и длительность зарядки.</p></div>
+      </details>
+      <details>
+        <summary>Пигмент безопасен? Есть документы?</summary>
+        <div class="a"><p>Орлюм 540-Н нетоксичен, не радиоактивен и безопасен при контакте с кожей. Комплект документов — <span class="ph">указать: ТУ / ГОСТ, паспорт безопасности, сертификаты</span> — предоставляем по запросу вместе с образцом.</p></div>
+      </details>
+      <details>
+        <summary>Какая минимальная партия?</summary>
+        <div class="a"><p>Жёсткого минимума нет — работаем под заказ и подбираем объём под задачу: от пробной фасовки для теста до регулярных отгрузок под серийное производство. Напишите предполагаемый объём в заявке, и мы предложим условия.</p></div>
+      </details>
+      <details>
+        <summary>Работаете с физическими лицами?</summary>
+        <div class="a"><p>Нет. Мы работаем только с юридическими лицами и индивидуальными предпринимателями, по договору и с полным пакетом отгрузочных документов, расчёт безналичный.</p></div>
+      </details>
+      <details>
+        <summary>Сколько стоит и как узнать цену?</summary>
+        <div class="a"><p>Цена зависит от объёма партии и условий поставки, поэтому мы считаем её индивидуально. Оставьте заявку с предполагаемым объёмом — подготовим коммерческое предложение.</p></div>
+      </details>
+    </div>
+
+    <div class="center" style="margin-top:40px">
+      <a class="btn btn-primary js-cta" href="#lead" data-topic="Вопрос из блока FAQ">Задать свой вопрос</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==================== ПОДВАЛ ==================== -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <div class="ftr-logo"><img src="assets/img/olbo-logo.png" alt="ООО Фирма «ОЛБО»" width="600" height="318" loading="lazy"></div>
+        <p>Общество с ограниченной ответственностью Фирма «ОЛБО»</p>
+        <p>Производство неорганических люминофоров длительного послесвечения. Работаем с юридическими лицами и ИП.</p>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <p><a href="tel:+74999669706">+7 (499) 966-97-06</a></p>
+        <p><a href="mailto:info@firma-olbo.ru" class="ph">info@firma-olbo.ru</a></p>
+        <p>Пн–Пт, 8:30–17:00</p>
+        <p style="margin-top:14px">107143, г. Москва,<br>1-й Иртышский проезд, д. 10А, стр. 1</p>
+        <p>Почтовый адрес: 107143, г. Москва, а/я 53</p>
+      </div>
+      <div>
+        <h4>Реквизиты</h4>
+        <div class="req-list">
+          ИНН 7718042698<br>
+          КПП 771801001<br>
+          ОГРН 1027700363888<br>
+          ОКПО 16332738
+        </div>
+        <p style="margin-top:14px;font-size:14px">Банковские реквизиты и карточку предприятия высылаем по запросу вместе с договором.</p>
+      </div>
+    </div>
+    <div class="ftr-btm">
+      <span>© <span id="year">2026</span> ООО Фирма «ОЛБО». Все права защищены.</span>
+      <a href="privacy.html" class="ph">Политика обработки персональных данных</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== МОБИЛЬНАЯ ПАНЕЛЬ ==================== -->
+<div class="mbar">
+  <a class="btn btn-ghost" href="tel:+74999669706">Позвонить</a>
+  <a class="btn btn-primary js-cta" href="#lead" data-topic="Заявка с мобильной панели">Оставить заявку</a>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "ООО Фирма «ОЛБО»",
+      "legalName": "Общество с ограниченной ответственностью Фирма «ОЛБО»",
+      "logo": "assets/img/olbo-logo.png",
+      "telephone": "+7-499-966-97-06",
+      "email": "info@firma-olbo.ru",
+      "taxID": "7718042698",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1-й Иртышский проезд, д. 10А, стр. 1",
+        "addressLocality": "Москва",
+        "postalCode": "107143",
+        "addressCountry": "RU"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:30",
+        "closes": "17:00"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Люминофор неорганический Орлюм 540-Н",
+      "category": "Пигмент длительного послесвечения",
+      "description": "Неорганический фосфоресцентный пигмент с зелёным свечением. Послесвечение 8–10 часов, зарядка 15–30 минут, нетоксичен и не радиоактивен. Совместим с УФ- и эпоксидной смолой, лаками, красками, силиконом и ПВА.",
+      "image": "assets/img/powder-glow.jpg",
+      "brand": { "@type": "Brand", "name": "ОЛБО" },
+      "manufacturer": { "@type": "Organization", "name": "ООО Фирма «ОЛБО»" }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     ОТПРАВКА ЗАЯВКИ
+
+     Сейчас это ЗАГЛУШКА: данные выводятся в консоль браузера и функция
+     возвращает «успех». Заявки НИКУДА НЕ УХОДЯТ.
+
+     Чтобы включить приём заявок, раскомментируйте ОДИН из вариантов ниже
+     и удалите блок-заглушку.
+
+     -- ВАРИАНТ A. Telegram-бот -------------------------------------
+     Создать бота у @BotFather, получить токен. Узнать chat_id: написать
+     боту, затем открыть https://api.telegram.org/bot<ТОКЕН>/getUpdates
+     Минус: токен виден в исходном коде страницы.
+
+       var TG_TOKEN = 'ВСТАВИТЬ_ТОКЕН';
+       var TG_CHAT  = 'ВСТАВИТЬ_CHAT_ID';
+       function submitLead(data) {
+         var text = 'Заявка с сайта\n'
+           + 'Тема: ' + data.topic + '\n'
+           + 'Имя: ' + data.name + '\n'
+           + 'Компания: ' + data.company + '\n'
+           + 'Телефон: ' + data.phone + '\n'
+           + 'E-mail: ' + data.email + '\n'
+           + 'Задача: ' + (data.task || '-');
+         return fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ chat_id: TG_CHAT, text: text })
+         }).then(function (r) { if (!r.ok) throw new Error('telegram'); });
+       }
+
+     -- ВАРИАНТ B. Formspree: заявки на почту, без своего сервера ----
+     Зарегистрироваться на formspree.io, создать форму, взять её ID.
+
+       function submitLead(data) {
+         return fetch('https://formspree.io/f/ВАШ_ID', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+           body: JSON.stringify(data)
+         }).then(function (r) { if (!r.ok) throw new Error('formspree'); });
+       }
+
+     -- ВАРИАНТ C. Свой обработчик на хостинге (PHP-скрипт, CRM) -----
+
+       function submitLead(data) {
+         return fetch('/send.php', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify(data)
+         }).then(function (r) { if (!r.ok) throw new Error('backend'); });
+       }
+     ------------------------------------------------------------------ */
+
+  function submitLead(data) {
+    /* ЗАГЛУШКА — УДАЛИТЬ ПОСЛЕ ПОДКЛЮЧЕНИЯ ОДНОГО ИЗ ВАРИАНТОВ ВЫШЕ */
+    console.log('[Заявка] данные формы:', data);
+    return new Promise(function (resolve) { setTimeout(resolve, 700); });
+  }
+
+  /* ---------------------- Мобильное меню ---------------------- */
+  var burger = document.getElementById('burger');
+  var mnav = document.getElementById('mnav');
+
+  burger.addEventListener('click', function () {
+    var open = mnav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+
+  mnav.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') {
+      mnav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ------ Кнопки CTA проставляют тему заявки в скрытое поле ------ */
+  var topicField = document.getElementById('topic');
+  Array.prototype.forEach.call(document.querySelectorAll('.js-cta'), function (btn) {
+    btn.addEventListener('click', function () {
+      topicField.value = btn.getAttribute('data-topic') || 'Заявка с сайта';
+    });
+  });
+
+  /* ---------------------- Валидация формы ---------------------- */
+  var form = document.getElementById('leadForm');
+  var btn = document.getElementById('submitBtn');
+  var msgOk = document.getElementById('msgOk');
+  var msgNo = document.getElementById('msgNo');
+
+  function setBad(id, bad) {
+    document.getElementById(id).classList.toggle('bad', bad);
+  }
+
+  function digits(s) {
+    return (s.match(/\d/g) || []).length;
+  }
+
+  function validate() {
+    var bad = [];
+
+    setBad('f-name', false);
+    setBad('f-company', false);
+    setBad('f-phone', false);
+    setBad('f-email', false);
+    document.getElementById('f-consent').classList.remove('bad');
+
+    if (form.name.value.trim().length < 2) bad.push('f-name');
+    if (form.company.value.trim().length < 2) bad.push('f-company');
+    if (digits(form.phone.value) < 10) bad.push('f-phone');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.value.trim())) bad.push('f-email');
+
+    bad.forEach(function (id) { setBad(id, true); });
+
+    if (!form.consent.checked) {
+      document.getElementById('f-consent').classList.add('bad');
+      bad.push('f-consent');
+    }
+    return bad;
+  }
+
+  /* Ошибка поля снимается, как только его начали править */
+  ['name', 'company', 'phone', 'email'].forEach(function (n) {
+    form[n].addEventListener('input', function () { setBad('f-' + n, false); });
+  });
+  form.consent.addEventListener('change', function () {
+    document.getElementById('f-consent').classList.remove('bad');
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    /* Honeypot: боты заполняют скрытое поле — тихо выходим */
+    if (form.website.value) return;
+
+    msgOk.classList.remove('show');
+    msgNo.classList.remove('show');
+
+    var bad = validate();
+    if (bad.length) {
+      var el = document.getElementById(bad[0]).querySelector('input, textarea');
+      if (el) el.focus();
+      return;
+    }
+
+    var data = {
+      topic: topicField.value,
+      name: form.name.value.trim(),
+      company: form.company.value.trim(),
+      phone: form.phone.value.trim(),
+      email: form.email.value.trim(),
+      task: form.task.value.trim(),
+      page: location.href,
+      sentAt: new Date().toLocaleString('ru-RU')
+    };
+
+    btn.setAttribute('aria-busy', 'true');
+    btn.textContent = 'Отправляем…';
+
+    submitLead(data).then(function () {
+      form.reset();
+      msgOk.textContent = 'Спасибо! Заявка отправлена — свяжемся с вами в рабочее время.';
+      msgOk.classList.add('show');
+      msgOk.scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+      /* Событие для аналитики (Метрика / GA) */
+      if (window.dataLayer) window.dataLayer.push({ event: 'lead_submit', topic: data.topic });
+    })['catch'](function () {
+      msgNo.textContent = 'Не удалось отправить заявку. Позвоните нам: +7 (499) 966-97-06';
+      msgNo.classList.add('show');
+    }).then(function () {
+      btn.removeAttribute('aria-busy');
+      btn.textContent = 'Отправить заявку';
+    });
+  });
+
+  /* ---------------------- Год в подвале ---------------------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
